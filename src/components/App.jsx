@@ -53,21 +53,28 @@ export default function App() {
         const charInfo = char.data[0];
         setShowSave(false);
         setBiosInfo({
-          name: charInfo.charName,
-          class: charInfo.charClass,
-          background: charInfo.charBackground,
-          archetype: charInfo.charArchetype,
-          race: charInfo.charRace,
-          alignment: charInfo.charAlign,
+          name: charInfo.name,
+          class: charInfo.profession,
+          background: charInfo.background,
+          archetype: charInfo.archetype,
+          race: charInfo.race,
+          alignment: charInfo.align,
         });
         setStatsInfo({
-          stats: charInfo.stats,
+          stats: {
+            str: charInfo.stats[0].str,
+            dex: charInfo.stats[0].dex,
+            con: charInfo.stats[0].con,
+            int: charInfo.stats[0].int,
+            wis: charInfo.stats[0].wis,
+            cha: charInfo.stats[0].cha,
+          },
         });
         setMiscInfo({
-          dex: charInfo.stats.dex,
-          race: charInfo.charRace,
-          con: charInfo.stats.con,
-          class: charInfo.charClass,
+          dex: charInfo.stats[0].dex,
+          race: charInfo.race,
+          con: charInfo.stats[0].con,
+          class: charInfo.profession,
         });
       })
       .then(() => setPageState('display'))
