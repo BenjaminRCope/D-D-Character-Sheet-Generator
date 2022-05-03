@@ -1,0 +1,37 @@
+{
+  "name": "d-d-character-sheet-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode=development",
+    "build": "webpack --mode=production",
+    "dev": "webpack server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenjaminRCope/D-D-Character-Sheet-Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenjaminRCope/D-D-Character-Sheet-Generator/issues"
+  },
+  "homepage": "https://github.com/BenjaminRCope/D-D-Character-Sheet-Generator#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1"
+  }
+}
