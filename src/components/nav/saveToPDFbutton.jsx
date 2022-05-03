@@ -12,8 +12,10 @@ const PDFButton = styled.button`
   color: white;
 `;
 
-export default function SaveToPDFButton({ saveCharacterInfo }) {
-  return (
-    <PDFButton onClick={(event) => { saveCharacterInfo(event); }}>Save Character</PDFButton>
-  );
+export default function SaveToPDFButton({ saveCharacterInfo, showSave }) {
+  if (showSave) {
+    return (
+      <PDFButton onClick={(event) => { saveCharacterInfo(event); }}>Save Character</PDFButton>
+    );
+  }
 }

@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
-const { getCharacterNames, createCharacter } = require('./handlers');
+const { getAllCharacters, createCharacter, getCharByName } = require('./handlers');
 
-module.exports.getCharacterNames = (req, res) => {
-  getCharacterNames()
-    .then((data) => {
-      const names = [];
-      data.forEach((char) => {
-        if (char.name) {
-          names.push(char.name);
-        }
-      });
-      res.status(200).send(names);
-    })
-    .catch(() => res.sendStatus(418));
+module.exports.getCharByName = (req, res) => {
+  const query = req.query.queryName;
+  console.log(query);
+  getCharByName(query)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.send(err));
+};
+
+module.exports.getAllCharacters = (req, res) => {
+  getAllCharacters()
+    .then((data) => res.status(200).send(data))
+    .catch(() => res.sendStatus(500));
 };
 
 module.exports.createCharacter = (req, res) => {

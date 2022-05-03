@@ -43,6 +43,36 @@ export default function App() {
   const [statsInfo, setStatsInfo] = useState({});
   const [miscInfo, setMiscInfo] = useState({});
   const [currentChar, setCurrentChar] = useState({});
+  const [showSave, setShowSave] = useState(true);
+
+  const onStoredCharSelect = (name) => {
+    const queryName = name.name;
+
+    axios.get('/getCharByName', { params: { queryName } })
+      .then((char) => {
+        const charInfo = char.data[0];
+        setShowSave(false);
+        setBiosInfo({
+          name: charInfo.charName,
+          class: charInfo.charClass,
+          background: charInfo.charBackground,
+          archetype: charInfo.charArchetype,
+          race: charInfo.charRace,
+          alignment: charInfo.charAlign,
+        });
+        setStatsInfo({
+          stats: charInfo.stats,
+        });
+        setMiscInfo({
+          dex: charInfo.stats.dex,
+          race: charInfo.charRace,
+          con: charInfo.stats.con,
+          class: charInfo.charClass,
+        });
+      })
+      .then(() => setPageState('display'))
+      .catch((err) => console.log(err));
+  };
 
   const onHomeClick = () => {
     setPageState('buttons');
@@ -57,6 +87,7 @@ export default function App() {
   };
 
   const generateCharacterSheet = (charInfo) => {
+    setShowSave(true);
     setCurrentChar(charInfo);
     setBiosInfo({
       name: charInfo.charName,
@@ -102,7 +133,7 @@ export default function App() {
     return (
       <div>
         <TopBanner onHomeClick={onHomeClick} />
-        <SaveToPDFButton saveCharacterInfo={saveCharacterInfo} />
+        <SaveToPDFButton saveCharacterInfo={saveCharacterInfo} showSave={showSave} />
         <PageFrame>
           <ComponentsFrame>
             <Bios info={biosInfo} />
@@ -125,7 +156,7 @@ export default function App() {
     return (
       <div>
         <TopBanner onHomeClick={onHomeClick} />
-        <Archive />
+        <Archive onStoredCharSelect={onStoredCharSelect} />
       </div>
     );
   }

@@ -1,7 +1,9 @@
 const { Character } = require('./db');
 
 module.exports = {
-  getCharacterNames: () => Character.find({}),
+  getCharByName: (query) => Character.find({ name: query }),
+
+  getAllCharacters: () => Character.find({}),
 
   createCharacter: ({
     name,
