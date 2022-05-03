@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "dev": "webpack serve --open"
+    "dev": "webpack serve --open",
+    "start-server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,9 @@
   },
   "homepage": "https://github.com/BenjaminRCope/D-D-Character-Sheet-Generator#readme",
   "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
