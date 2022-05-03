@@ -1,19 +1,18 @@
-/* eslint-disable import/extensions */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import TopBanner from './topBanner/banner.jsx';
+import TopBanner from './topBanner/banner';
 
-import Bios from './characterBios/bios.jsx';
-import Stats from './characterStats/stats.jsx';
-import Misc from './characterMisc/misc.jsx';
+import Bios from './characterBios/bios';
+import Stats from './characterStats/stats';
+import Misc from './characterMisc/misc';
 
-import CreationForm from './forms/creationForm.jsx';
+import CreationForm from './forms/creationForm';
 
-import Navigation from './nav/navigationButtons.jsx';
-import SaveToPDFButton from './nav/saveToPDFbutton.jsx';
+import Navigation from './nav/navigationButtons';
+import SaveToPDFButton from './nav/saveToPDFbutton';
 
 const PageFrame = styled.div`
   padding: 10px;
@@ -78,7 +77,7 @@ export default function App() {
   const saveCharacterInfo = (event) => {
     event.preventDefault();
 
-    axios.get('/api/test')
+    axios.get('/test')
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
@@ -96,8 +95,8 @@ export default function App() {
   } if (pageState === 'display') {
     return (
       <div>
-        <TopBanner onHomeClick={onHomeClick}/>
-        <SaveToPDFButton saveCharacterInfo={saveCharacterInfo}/>
+        <TopBanner onHomeClick={onHomeClick} />
+        <SaveToPDFButton saveCharacterInfo={saveCharacterInfo} />
         <PageFrame>
           <ComponentsFrame>
             <Bios info={biosInfo} />

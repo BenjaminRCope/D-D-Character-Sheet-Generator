@@ -7,6 +7,7 @@
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
+    "start-dev": "npx webpack --watch",
     "start-server": "nodemon server/index.js"
   },
   "repository": {

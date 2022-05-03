@@ -20,9 +20,9 @@ module.exports = {
       },
     ],
   },
-  // resolve: {
-  //   extensions: ['*', '.js', '.jsx'],
-  // },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
   devtool: 'eval-cheap-module-source-map',
   devServer: {
     static: {
