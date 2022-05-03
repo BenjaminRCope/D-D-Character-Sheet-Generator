@@ -14,6 +14,8 @@ import CreationForm from './forms/creationForm';
 import Navigation from './nav/navigationButtons';
 import SaveToPDFButton from './nav/saveToPDFbutton';
 
+import Archive from './archive/archive';
+
 const PageFrame = styled.div`
   padding: 10px;
 `;
@@ -40,6 +42,7 @@ export default function App() {
   const [biosInfo, setBiosInfo] = useState({});
   const [statsInfo, setStatsInfo] = useState({});
   const [miscInfo, setMiscInfo] = useState({});
+  const [currentChar, setCurrentChar] = useState({});
 
   const onHomeClick = () => {
     setPageState('buttons');
@@ -54,6 +57,7 @@ export default function App() {
   };
 
   const generateCharacterSheet = (charInfo) => {
+    setCurrentChar(charInfo);
     setBiosInfo({
       name: charInfo.charName,
       class: charInfo.charClass,
@@ -77,9 +81,11 @@ export default function App() {
   const saveCharacterInfo = (event) => {
     event.preventDefault();
 
-    axios.get('/test')
-      .then((result) => console.log(result))
+    axios.post('/createCharacter', { currentChar })
+      .then(() => console.log('posted'))
       .catch((err) => console.log(err));
+
+    // setPageState('buttons');
   };
 
   if (pageState === 'buttons') {
@@ -119,7 +125,7 @@ export default function App() {
     return (
       <div>
         <TopBanner onHomeClick={onHomeClick} />
-        work in progress
+        <Archive />
       </div>
     );
   }
