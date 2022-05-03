@@ -1,9 +1,17 @@
 /* eslint-disable no-console */
-const { getCharacters, createCharacter } = require('./handlers');
+const { getCharacterNames, createCharacter } = require('./handlers');
 
-module.exports.getAllCharacters = (req, res) => {
-  getCharacters()
-    .then((data) => res.status(200).send(data))
+module.exports.getCharacterNames = (req, res) => {
+  getCharacterNames()
+    .then((data) => {
+      const names = [];
+      data.forEach((char) => {
+        if (char.name) {
+          names.push(char.name);
+        }
+      });
+      res.status(200).send(names);
+    })
     .catch(() => res.sendStatus(418));
 };
 

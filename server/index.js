@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 const port = process.env.PORT || 3000;
 
 // routes
-app.get('/getCharacter', routes.getAllCharacters);
+app.get('/getCharacterNames', routes.getCharacterNames);
 app.post('/createCharacter', routes.createCharacter);
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
