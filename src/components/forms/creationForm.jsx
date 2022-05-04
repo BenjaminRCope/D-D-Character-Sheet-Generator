@@ -24,7 +24,6 @@ const TextField = styled.input`
 `;
 
 const PromptContainer = styled.form`
-  border: dotted;
   margin: 15px;
 `;
 

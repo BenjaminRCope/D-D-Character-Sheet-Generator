@@ -4,20 +4,22 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 
-import StrengthSelector from './statSelectors/strSelector.jsx';
-
-const AvailableStats = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 30px;
+const StatsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 140px 150px 150px 150px 150px 150px;
 `;
 
 const Stat = styled.div`
-  margin: 10px;
+  display: grid;
+  grid-tempate-rows: 1fr 1fr;
+`;
+
+const ButtonContainer = styled.div`
+  margin: 8px;
 `;
 
 export default function StatSelector({ submitHandler }) {
-  const [standardArray, setStandardArray] = useState([15, 14, 13, 12, 10, 8]);
+  const [rolled, setRolled] = useState(false);
   const [str, setStr] = useState(undefined);
   const [dex, setDex] = useState(14);
   const [con, setCon] = useState(13);
@@ -25,88 +27,78 @@ export default function StatSelector({ submitHandler }) {
   const [wis, setWis] = useState(10);
   const [cha, setCha] = useState(8);
 
-  const [selectionMatrix, setSelectionMatrix] = useState([0, 0, 0, 0, 0, 0]);
+  const diceRoller = () => {
+    const rollResults = [];
 
-  const removeValue = (value) => {
-    const newArr = [];
-    for (let i = 0; i < standardArray.length; i += 1) {
-      if (standardArray[i] !== Number(value)) {
-        newArr.push(standardArray[i]);
-      }
+    for (let i = 0; i < 4; i += 1) {
+      const roll = Math.floor(Math.random() * 6) + 1;
+      rollResults.push(roll);
     }
-    setStandardArray(newArr);
+
+    rollResults.sort((a, b) => b - a).pop();
+    return rollResults.reduce((sum, a) => sum + a, 0);
   };
 
-  const handleSelectStr = (event) => {
-    setStr(event.target.value);
-    removeValue(event.target.value);
+  const rollHandler = (event) => {
+    if (!rolled) setRolled(true);
+    event.preventDefault();
 
-    const newMatrix = selectionMatrix;
-    newMatrix[0] = 1;
+    const listOfStats = [];
+    for (let j = 0; j < 6; j += 1) {
+      const stat = diceRoller();
+      listOfStats.push(stat);
+    }
 
-    setSelectionMatrix(newMatrix);
+    setStr(listOfStats[0]);
+    setDex(listOfStats[1]);
+    setCon(listOfStats[2]);
+    setInt(listOfStats[3]);
+    setWis(listOfStats[4]);
+    setCha(listOfStats[5]);
   };
 
-  const handleSelectDex = (event) => {
-    setDex(event.target.value);
-    removeValue(event.target.value);
-  };
-
-  const handleSelectCon = (event) => {
-    setCon(event.target.value);
-    removeValue(event.target.value);
-  };
-
-  const handleSelectInt = (event) => {
-    setInt(event.target.value);
-    removeValue(event.target.value);
-  };
-
-  const handleSelectWis = (event) => {
-    setWis(event.target.value);
-    removeValue(event.target.value);
-  };
-
-  const handleSelectCha = (event) => {
-    setCha(event.target.value);
-    removeValue(event.target.value);
-  };
+  if (!rolled) {
+    return (
+      <form>
+        <input type="submit" value="Roll" onClick={(event) => { rollHandler(event); }} />
+      </form>
+    );
+  }
 
   return (
-    <form onSubmit={(event) => { submitHandler(event, [str, dex, con, int, wis, cha]); }}>
-      <div>Available Stats </div>
-      <AvailableStats>
-        {standardArray.map((number, key) => <Stat key={key}>{number}</Stat>)}
-      </AvailableStats>
-      {/* <AvailableStats>{standardArray}</AvailableStats> */}
-      <div>Strength</div>
-      <StrengthSelector
-        selected={selectionMatrix[0]}
-        standardArray={standardArray}
-        str={str}
-        handleChange={handleSelectStr}
-      />
-      <div>Dexterity</div>
-      <select onChange={(event) => { handleSelectDex(event); }}>
-        {standardArray.map((number, key) => <option value={number} key={key}>{number}</option>)}
-      </select>
-      <div>Constitution</div>
-      <select onChange={(event) => { handleSelectCon(event); }}>
-        {standardArray.map((number, key) => <option value={number} key={key}>{number}</option>)}
-      </select>
-      <div>Intelligence</div>
-      <select onChange={(event) => { handleSelectInt(event); }}>
-        {standardArray.map((number, key) => <option value={number} key={key}>{number}</option>)}
-      </select>
-      <div>Wisdom</div>
-      <select onChange={(event) => { handleSelectWis(event); }}>
-        {standardArray.map((number, key) => <option value={number} key={key}>{number}</option>)}
-      </select>
-      <div>Charisma</div>
-      <select onChange={(event) => { handleSelectCha(event); }}>
-        {standardArray.map((number, key) => <option value={number} key={key}>{number}</option>)}
-      </select>
-      <input type="submit" value="Submit" />
-    </form>
+    <div>
+      <StatsContainer>
+        <Stat>
+          <div>Strength</div>
+          <div>{str}</div>
+        </Stat>
+        <Stat>
+          <div>Dexterity</div>
+          <div>{dex}</div>
+        </Stat>
+        <Stat>
+          <div>Constitution</div>
+          <div>{con}</div>
+        </Stat>
+        <Stat>
+          <div>Intelligence</div>
+          <div>{int}</div>
+        </Stat>
+        <Stat>
+          <div>Wisdom</div>
+          <div>{wis}</div>
+        </Stat>
+        <Stat>
+          <div>Charisma</div>
+          <div>{cha}</div>
+        </Stat>
+      </StatsContainer>
+      <ButtonContainer>
+        <input type="submit" value="Roll Again" onClick={(event) => { rollHandler(event); }} />
+        <form onSubmit={(event) => { submitHandler(event, [str, dex, con, int, wis, cha]); }}>
+          <input type="submit" value="Submit" />
+        </form>
+      </ButtonContainer>
+    </div>
   );
 }
