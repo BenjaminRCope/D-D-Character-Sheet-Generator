@@ -2,7 +2,20 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
+
+const ArchivedCharacterList = styled.div`
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+`;
+
+const ArchivedCharacter = styled.button`
+  width: 50%;
+  height: 50px;
+`;
 
 export default function Archive({ onStoredCharSelect }) {
   const [nameList, setNameList] = useState([]);
@@ -22,12 +35,12 @@ export default function Archive({ onStoredCharSelect }) {
   }, []);
 
   return (
-    <div>
+    <ArchivedCharacterList>
       {nameList.map((name, key) => (
-        <button type="button" value={name} key={key} onClick={() => { onStoredCharSelect({ name }); }}>
+        <ArchivedCharacter type="button" value={name} key={key} onClick={() => { onStoredCharSelect({ name }); }}>
           {name}
-        </button>
+        </ArchivedCharacter>
       ))}
-    </div>
+    </ArchivedCharacterList>
   );
 }
