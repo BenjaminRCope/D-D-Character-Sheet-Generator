@@ -4,9 +4,29 @@
 /* eslint-disable import/extensions */
 // import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 
 import StatSelector from './statSelector.jsx';
+
+const SubmitButton = styled.input`
+  margin-right: 0;
+  height: 20px;
+  width: 100px;
+`;
+
+const Dropdown = styled.select`
+  width: 25%;
+`;
+
+const TextField = styled.input`
+  width: 25%;
+`;
+
+const PromptContainer = styled.form`
+  border: dotted;
+  margin: 15px;
+`;
 
 export default function CreationForm({ submitHandler }) {
   const url = 'https://www.dnd5eapi.co/api/';
@@ -111,32 +131,38 @@ export default function CreationForm({ submitHandler }) {
 
   if (formState === 1) {
     return (
-      <form onSubmit={(event) => { handlePageTurn(event); }}>
+      <PromptContainer onSubmit={(event) => { handlePageTurn(event); }}>
         <div>
-          Character Name
-          <input type="text" onChange={(event) => { setCharName(event.target.value); }} />
+          Character Name:
+          <TextField type="text" onChange={(event) => { setCharName(event.target.value); }} />
         </div>
-        <input type="submit" value="Submit" />
-      </form>
+        <SubmitButton type="submit" value="Submit" />
+      </PromptContainer>
     );
   } if (formState === 2) {
     return (
-      <form onSubmit={(event) => { handlePageTurn(event); }}>
-        <div>Class</div>
-        <select name="Class" onChange={(event) => { setCharClass(event.target.value); }}>
-          {classList.map((profession, key) => (
-            <option value={profession} key={key}>{profession}</option>))}
-        </select>
-        <div>Race</div>
-        <select name="Race" onChange={(event) => { setCharRace(event.target.value); }}>
-          {raceList.map((race, key) => <option value={race} key={key}>{race}</option>)}
-        </select>
-        <div>Background</div>
-        <select name="Background" onChange={(event) => { setCharBackground(event.target.value); }}>
-          {backgroundList.map((bg, key) => <option value={bg} key={key}>{bg}</option>)}
-        </select>
-        <input type="submit" value="Submit" />
-      </form>
+      <PromptContainer onSubmit={(event) => { handlePageTurn(event); }}>
+        <div>
+          Class:
+          <Dropdown name="Class" onChange={(event) => { setCharClass(event.target.value); }}>
+            {classList.map((profession, key) => (
+              <option value={profession} key={key}>{profession}</option>))}
+          </Dropdown>
+        </div>
+        <div>
+          Race:
+          <Dropdown name="Race" onChange={(event) => { setCharRace(event.target.value); }}>
+            {raceList.map((race, key) => <option value={race} key={key}>{race}</option>)}
+          </Dropdown>
+        </div>
+        <div>
+          Background:
+          <Dropdown name="Background" onChange={(event) => { setCharBackground(event.target.value); }}>
+            {backgroundList.map((bg, key) => <option value={bg} key={key}>{bg}</option>)}
+          </Dropdown>
+        </div>
+        <SubmitButton type="submit" value="Submit" />
+      </PromptContainer>
     );
   } if (formState === 3) {
     return (
@@ -146,27 +172,31 @@ export default function CreationForm({ submitHandler }) {
     );
   } if (formState === 4) {
     return (
-      <form onSubmit={(event) => { handlePageTurn(event); }}>
-        <div>Archetype</div>
-        <select onChange={(event) => { setCharArchetype(event.target.value); }}>
-          {archList.map((archetype, key) => (
-            <option value={archetype} key={key}>{archetype}</option>))}
-        </select>
-        <div>Alignment</div>
-        <select onChange={(event) => { setCharAlign(event.target.value); }}>
-          <option value="Lawful Good">Lawful Good</option>
-          <option value="Neutral Good">Neutral Good</option>
-          <option value="Chaotic Good">Chaotic Good</option>
-          <option value="Lawful Good">Lawful Good</option>
-          <option value="True Neutral">True Neutral</option>
-          <option value="Chaotic Neutral">Chaotic Neutral</option>
-          <option value="Lawful Evil">Lawful Evil</option>
-          <option value="Neutral Evil">Neutral Evil</option>
-          <option value="Chaotic Evil">Chaotic Evil</option>
-          <option value="Who Cares About Alignment">Who Cares About Alignment</option>
-        </select>
-        <input type="submit" value="Submit" />
-      </form>
+      <PromptContainer onSubmit={(event) => { handlePageTurn(event); }}>
+        <div>
+          Archetype:
+          <Dropdown onChange={(event) => { setCharArchetype(event.target.value); }}>
+            {archList.map((archetype, key) => (
+              <option value={archetype} key={key}>{archetype}</option>))}
+          </Dropdown>
+        </div>
+        <div>
+          Alignment
+          <Dropdown onChange={(event) => { setCharAlign(event.target.value); }}>
+            <option value="Lawful Good">Lawful Good</option>
+            <option value="Neutral Good">Neutral Good</option>
+            <option value="Chaotic Good">Chaotic Good</option>
+            <option value="Lawful Good">Lawful Good</option>
+            <option value="True Neutral">True Neutral</option>
+            <option value="Chaotic Neutral">Chaotic Neutral</option>
+            <option value="Lawful Evil">Lawful Evil</option>
+            <option value="Neutral Evil">Neutral Evil</option>
+            <option value="Chaotic Evil">Chaotic Evil</option>
+            <option value="Who Cares About Alignment">Who Cares About Alignment</option>
+          </Dropdown>
+        </div>
+        <SubmitButton type="submit" value="Submit" />
+      </PromptContainer>
     );
   } if (formState === 5) {
     return (
@@ -196,7 +226,7 @@ export default function CreationForm({ submitHandler }) {
           Alignment:
           {charAlign}
         </div>
-        <button type="button" onClick={(event) => { compileCharacter(event); }}>Generate Character Sheet</button>
+        <SubmitButton type="button" value="Generate Character Sheet" style={{ width: '200px' }} onClick={(event) => { compileCharacter(event); }} />
       </div>
     );
   }
