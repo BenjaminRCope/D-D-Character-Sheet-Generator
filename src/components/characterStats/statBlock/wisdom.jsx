@@ -15,7 +15,7 @@ const ModifierCont = styled.div`
 
 const ProfCont = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 
   border: solid;
   border-width: 1px;
@@ -27,18 +27,30 @@ export default function Wisdom({ wis, mod }) {
     <WisCont>
       <ModifierCont>{wis}</ModifierCont>
       <ProfCont>
-        Saving Throw:
-        {mod}
-        Animal Handling:
-        {mod}
-        Insight:
-        {mod}
-        Medicine:
-        {mod}
-        Perception:
-        {mod}
-        Survival:
-        {mod}
+        <div>
+          Saving Throw:
+          {mod}
+        </div>
+        <div>
+          Animal Handling:
+          {mod}
+        </div>
+        <div>
+          Insight:
+          {mod}
+        </div>
+        <div>
+          Medicine:
+          {mod}
+        </div>
+        <div>
+          Perception:
+          {mod}
+        </div>
+        <div>
+          Survival:
+          {mod}
+        </div>
       </ProfCont>
     </WisCont>
   );

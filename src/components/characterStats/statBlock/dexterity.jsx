@@ -15,7 +15,7 @@ const ModifierCont = styled.div`
 
 const ProfCont = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 
   border: solid;
   border-width: 1px;
@@ -27,14 +27,22 @@ export default function Dexterity({ dex, mod }) {
     <DexCont>
       <ModifierCont>{dex}</ModifierCont>
       <ProfCont>
-        Saving Throw:
-        {mod}
-        Acrobatics:
-        {mod}
-        Sleight of Hand:
-        {mod}
-        Stealth:
-        {mod}
+        <div>
+          Saving Throw:
+          {mod}
+        </div>
+        <div>
+          Acrobatics:
+          {mod}
+        </div>
+        <div>
+          Sleight of Hand:
+          {mod}
+        </div>
+        <div>
+          Stealth:
+          {mod}
+        </div>
       </ProfCont>
     </DexCont>
   );

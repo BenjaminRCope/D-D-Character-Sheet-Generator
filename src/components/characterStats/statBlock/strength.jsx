@@ -15,7 +15,7 @@ const ModifierCont = styled.div`
 
 const ProfCont = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 
   border: solid;
   border-width: 1px;
@@ -27,10 +27,14 @@ export default function Strength({ str, mod }) {
     <StrCont>
       <ModifierCont>{str}</ModifierCont>
       <ProfCont>
-        Saving Throw:
-        {mod}
-        Athletics:
-        {mod}
+        <div>
+          Saving Throw:
+          {mod}
+        </div>
+        <div>
+          Athletics:
+          {mod}
+        </div>
       </ProfCont>
     </StrCont>
   );

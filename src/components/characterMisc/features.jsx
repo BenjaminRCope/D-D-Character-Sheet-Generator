@@ -1,7 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+// import axios from 'axios';
 
 const FeaturesContainer = styled.div`
   border: solid;

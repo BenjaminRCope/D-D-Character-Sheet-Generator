@@ -15,7 +15,7 @@ const ModifierCont = styled.div`
 
 const ProfCont = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
   border: solid;
   border-width: 1px;
@@ -27,16 +27,26 @@ export default function Charisma({ cha, mod }) {
     <CharCont>
       <ModifierCont>{cha}</ModifierCont>
       <ProfCont>
-        Saving Throw:
-        {mod}
-        Deception:
-        {mod}
-        Intimidation:
-        {mod}
-        Performance:
-        {mod}
-        Persuasion:
-        {mod}
+        <div>
+          Saving Throw:
+          {mod}
+        </div>
+        <div>
+          Deception:
+          {mod}
+        </div>
+        <div>
+          Intimidation:
+          {mod}
+        </div>
+        <div>
+          Performance:
+          {mod}
+        </div>
+        <div>
+          Persuasion:
+          {mod}
+        </div>
       </ProfCont>
     </CharCont>
   );

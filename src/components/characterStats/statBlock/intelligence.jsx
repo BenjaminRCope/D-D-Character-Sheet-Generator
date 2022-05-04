@@ -15,7 +15,7 @@ const ModifierCont = styled.div`
 
 const ProfCont = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 
   border: solid;
   border-width: 1px;
@@ -27,18 +27,30 @@ export default function Intelligence({ int, mod }) {
     <IntCont>
       <ModifierCont>{int}</ModifierCont>
       <ProfCont>
-        Saving Throw:
-        {mod}
-        Arcana:
-        {mod}
-        History:
-        {mod}
-        Investigation:
-        {mod}
-        Nature:
-        {mod}
-        Religion:
-        {mod}
+        <div>
+          Saving Throw:
+          {mod}
+        </div>
+        <div>
+          Arcana:
+          {mod}
+        </div>
+        <div>
+          History:
+          {mod}
+        </div>
+        <div>
+          Investigation:
+          {mod}
+        </div>
+        <div>
+          Nature:
+          {mod}
+        </div>
+        <div>
+          Religion:
+          {mod}
+        </div>
       </ProfCont>
     </IntCont>
   );

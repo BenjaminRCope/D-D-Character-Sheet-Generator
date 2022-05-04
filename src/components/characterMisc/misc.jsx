@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import HP from './hp.jsx';
-import Features from './features.jsx';
+// import Features from './features.jsx';
 
 const Container = styled.div`
   border: solid;
@@ -16,6 +17,7 @@ const MiscContainer = styled.div`
   border: solid;
   border-width: 1px;
 
+  padding: 2px;
   margin: 8px;
 `;
 
@@ -95,7 +97,7 @@ export default function Misc({ info }) {
         <Speed>speed</Speed>
         <HP />
       </MiscContainer>
-      <Features features={features} />
+      {/* <Features features={features} /> */}
     </Container>
   );
 }

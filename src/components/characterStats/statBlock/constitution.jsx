@@ -15,7 +15,6 @@ const ModifierCont = styled.div`
 
 const ProfCont = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
 
   border: solid;
   border-width: 1px;
