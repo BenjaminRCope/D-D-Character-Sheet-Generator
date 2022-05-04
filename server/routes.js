@@ -3,7 +3,6 @@ const { getAllCharacters, createCharacter, getCharByName } = require('./handlers
 
 module.exports.getCharByName = (req, res) => {
   const query = req.query.queryName;
-  console.log(query);
   getCharByName(query)
     .then((result) => res.status(200).send(result))
     .catch((err) => res.send(err));

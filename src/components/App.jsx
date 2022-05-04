@@ -13,8 +13,7 @@ import CreationForm from './forms/creationForm';
 
 import Navigation from './nav/navigationButtons';
 import SaveToPDFButton from './nav/saveToPDFbutton';
-
-import Archive from './archive/archive';
+import Archive from './nav/archive';
 
 const PageFrame = styled.div`
   padding: 10px;

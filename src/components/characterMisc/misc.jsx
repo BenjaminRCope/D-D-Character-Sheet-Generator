@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
 import HP from './hp.jsx';
 import Features from './features.jsx';
 
@@ -47,6 +49,36 @@ const statMatrix = {
 };
 
 export default function Misc({ info }) {
+  const featureUrl = `https://www.dnd5eapi.co/api/classes/${info.class.toLowerCase()}/features`;
+
+  const [features, setFeatures] = useState([]);
+
+  useEffect(() => {
+    axios.get(featureUrl)
+      .then((result) => {
+        const featureNames = result.data.results;
+
+        for (let i = 0; i < 8; i += 1) {
+          if (featureNames[i].name.indexOf(':') === -1) {
+            const { name } = featureNames[i];
+
+            const featureDescUrl = `https://www.dnd5eapi.co${featureNames[i].url}`;
+
+            axios.get(featureDescUrl)
+              .then((description) => {
+                const dataString = `${name}: ${description.data.desc[0]}`;
+
+                const upToDateFeatures = [...features, dataString];
+                console.log(upToDateFeatures);
+                setFeatures(upToDateFeatures);
+              })
+              .catch((err) => console.log(err));
+          }
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Container>
       <MiscContainer>
@@ -63,7 +95,7 @@ export default function Misc({ info }) {
         <Speed>speed</Speed>
         <HP />
       </MiscContainer>
-      <Features />
+      <Features features={features} />
     </Container>
   );
 }
