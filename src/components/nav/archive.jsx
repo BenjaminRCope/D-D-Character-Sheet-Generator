@@ -6,15 +6,19 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const ArchivedCharacterList = styled.div`
-  margin: auto;
-  width: 50%;
+  display: flex;
+  flex-direction: column-reverse;
+
+  position: absolute;
+  left: 25%;
+  width: 100%;
   padding: 10px;
-  text-align: center;
 `;
 
 const ArchivedCharacter = styled.button`
   width: 50%;
   height: 50px;
+  margin: 10px;
 `;
 
 export default function Archive({ onStoredCharSelect }) {
