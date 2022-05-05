@@ -20,11 +20,7 @@ Once the project moves into development, the press release can be used as a touc
   > Character creation is a difficult process, especially when it comes to newer players who are less familiar with the game. Many players that I have personally led through this process have commented on how difficult the math is.
 ## Solution ##
   > This simplifies the process by automatically calculating some of the more difficult to understand processes.
-## Quote from You ##
-  > A quote from a spokesperson in your company.
 ## How to Get Started ##
-  > Describe how easy it is to get started.
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > Once deployed, this website will be easily accessible through the url. For now, a local version of the product will allow you to enjoy the character creation process.
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > To further explore the product and see it in action, look at the start-up instructions in the file titled README.md. This will tell you how to get a local version of the product started on a browser so you can explore and start your next D&D adventure!
