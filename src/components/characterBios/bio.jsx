@@ -55,10 +55,7 @@ const Alignment = styled.div`
   margin: 2px;
 `;
 
-const Underlined = styled.u`
-  color: red;
-  font-size: 20px;
-`;
+const Underlined = styled.u``;
 
 const Placeholder = styled.div``;
 
@@ -67,25 +64,30 @@ export default function Bio({ info }) {
     <BioCont>
       <RowCont>
         <Class>
-          Class
+          Class:
+          {' '}
           <Underlined>{info.class}</Underlined>
         </Class>
         <Background>
-          Background
+          Background:
+          {' '}
           <Underlined>{info.background}</Underlined>
         </Background>
         <Archetype>
-          Arch
+          Archetype:
+          {' '}
           <Underlined>{info.archetype}</Underlined>
         </Archetype>
       </RowCont>
       <RowCont>
         <Race>
-          Race
+          Race:
+          {' '}
           <Underlined>{info.race}</Underlined>
         </Race>
         <Alignment>
-          Align
+          Alignment:
+          {' '}
           <Underlined>{info.alignment}</Underlined>
         </Alignment>
         <Placeholder />
