@@ -12,6 +12,9 @@ import Charisma from './statBlock/charisma.jsx';
 const StatContainer = styled.div`
   border: solid;
   border-width: 1px;
+
+  margin: 10px;
+  padding: 8px;
 `;
 
 const statMatrix = {
