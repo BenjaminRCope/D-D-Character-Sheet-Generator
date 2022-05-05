@@ -51,32 +51,48 @@ const statMatrix = {
 };
 
 export default function Misc({ info }) {
-  const featureUrl = `https://www.dnd5eapi.co/api/classes/${info.class.toLowerCase()}/features`;
+  // const featureUrl = `https://www.dnd5eapi.co/api/classes/${info.class.toLowerCase()}/features`;
+  const speedUrl = `https://www.dnd5eapi.co/api/races/${info.race.toLowerCase()}`;
+  const hitDieUrl = `https://www.dnd5eapi.co/api/classes/${info.class.toLowerCase()}`;
 
-  const [features, setFeatures] = useState([]);
+  // const [features, setFeatures] = useState([]);
+  const [speed, setSpeed] = useState(0);
+  const [maxHP, setMaxHP] = useState(0);
 
   useEffect(() => {
-    axios.get(featureUrl)
+    // axios.get(featureUrl)
+    //   .then((result) => {
+    //     const featureNames = result.data.results;
+
+    //     for (let i = 0; i < 8; i += 1) {
+    //       if (featureNames[i].name.indexOf(':') === -1) {
+    //         const { name } = featureNames[i];
+
+    //         const featureDescUrl = `https://www.dnd5eapi.co${featureNames[i].url}`;
+
+    //         axios.get(featureDescUrl)
+    //           .then((description) => {
+    //             const dataString = `${name}: ${description.data.desc[0]}`;
+
+    //             const upToDateFeatures = [...features, dataString];
+    //             setFeatures(upToDateFeatures);
+    //           })
+    //           .catch((err) => console.log(err));
+    //       }
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
+
+    axios.get(speedUrl)
       .then((result) => {
-        const featureNames = result.data.results;
+        setSpeed(result.data.speed);
+      })
+      .catch((err) => console.log(err));
 
-        for (let i = 0; i < 8; i += 1) {
-          if (featureNames[i].name.indexOf(':') === -1) {
-            const { name } = featureNames[i];
-
-            const featureDescUrl = `https://www.dnd5eapi.co${featureNames[i].url}`;
-
-            axios.get(featureDescUrl)
-              .then((description) => {
-                const dataString = `${name}: ${description.data.desc[0]}`;
-
-                const upToDateFeatures = [...features, dataString];
-                console.log(upToDateFeatures);
-                setFeatures(upToDateFeatures);
-              })
-              .catch((err) => console.log(err));
-          }
-        }
+    axios.get(hitDieUrl)
+      .then((result) => {
+        const startingHealth = result.data.hit_die + statMatrix[info.con];
+        setMaxHP(startingHealth);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -85,17 +101,21 @@ export default function Misc({ info }) {
     <Container>
       <MiscContainer>
         <AC>
-          ac
+          AC:
           {' '}
           {10 + statMatrix[info.dex]}
         </AC>
         <Initiative>
-          init
+          Initiative:
           {' '}
           {statMatrix[info.dex]}
         </Initiative>
-        <Speed>speed</Speed>
-        <HP />
+        <Speed>
+          Speed:
+          {' '}
+          {speed}
+        </Speed>
+        <HP maxHP={maxHP} />
       </MiscContainer>
       {/* <Features features={features} /> */}
     </Container>
